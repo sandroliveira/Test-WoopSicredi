@@ -91,7 +91,7 @@ class EventRepository {
               })
           } catch (e: Exception) {
               if (!checkNetwork()){
-                  Toast.makeText(context, "sem conexão", Toast.LENGTH_LONG).show()
+                  Toast.makeText(context, LOG_MSG_NO_NETWORK, Toast.LENGTH_LONG).show()
               } else {
                   Log.e(LOG_MSG, e.toString())
               }
