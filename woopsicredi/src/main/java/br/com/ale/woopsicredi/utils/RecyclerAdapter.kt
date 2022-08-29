@@ -12,7 +12,7 @@ import br.com.ale.woopsicredi.data.Event
 import br.com.ale.woopsicredi.utils.Constants.Companion.IMAGE_NOT_FOUND
 import com.bumptech.glide.Glide
 
-class RecyclerAdapter (val context: Context, val events: List<Event>, val itemListener: EventItemListener): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+class RecyclerAdapter (private val context: Context, private val events: List<Event>, private val itemListener: EventItemListener): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
@@ -48,6 +48,4 @@ class RecyclerAdapter (val context: Context, val events: List<Event>, val itemLi
     interface EventItemListener {
         fun onEventItemClick(event: Event)
     }
-
-
 }

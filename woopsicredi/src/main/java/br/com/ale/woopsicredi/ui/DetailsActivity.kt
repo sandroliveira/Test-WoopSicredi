@@ -16,7 +16,8 @@ import br.com.ale.woopsicredi.utils.Constants.Companion.BTN_ENVIAR
 import br.com.ale.woopsicredi.utils.Constants.Companion.EVENT
 import br.com.ale.woopsicredi.utils.Constants.Companion.MSG_CHECK_IN
 import br.com.ale.woopsicredi.utils.Constants.Companion.TYPE_SHARE
-import br.com.ale.woopsicredi.utils.createTextDescription
+import br.com.ale.woopsicredi.utils.Utils
+
 import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -54,8 +55,7 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun setInfoViews() {
-        val stringBuilder = StringBuilder()
-        textContent.text = stringBuilder.createTextDescription(event)
+        textContent.text = Utils().createTextDescription(event)
         Glide.with(this)
             .load(event.image)
             .error(Constants.IMAGE_NOT_FOUND)
@@ -85,12 +85,12 @@ class DetailsActivity : AppCompatActivity() {
         val model: DetailViewModel by viewModels()
         this.let {
             val builder = AlertDialog.Builder(it)
-            val inflater = this.layoutInflater;
+            val inflater = this.layoutInflater
             val view = inflater.inflate(R.layout.dialog_layout, null)
             builder.setView(view)
                 .setTitle(MSG_CHECK_IN)
                 .setPositiveButton(BTN_ENVIAR) { _, _ ->
-                    model.sendPost(this, User(event.id,
+                    model.sendPost(User(event.id,
                         view.findViewById<EditText>(R.id.username).text.toString(),
                         view.findViewById<EditText>(R.id.email).text.toString()))
                 }.create().show()
