@@ -11,7 +11,6 @@ import br.com.ale.woopsicredi.utils.RecyclerAdapter
 import br.com.ale.woopsicredi.data.Event
 import br.com.ale.woopsicredi.utils.Constants.Companion.EVENT
 
-
 class MainActivity : AppCompatActivity(), RecyclerAdapter.EventItemListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: RecyclerAdapter
@@ -19,16 +18,24 @@ class MainActivity : AppCompatActivity(), RecyclerAdapter.EventItemListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        createRecyclerView()
+        createViewModel()
 
-        recyclerView = findViewById(R.id.recycler_view)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+    }
 
-
-        val model: MainViewModel by viewModels()
-        model.eventData.observe(this) {
+    private fun createViewModel() {
+        val viewModel: MainViewModel by viewModels()
+        viewModel.eventData.observe(this) {
             adapter = RecyclerAdapter(this, it, this)
             recyclerView.adapter = adapter
         }
+        viewModel.getEvent()
+    }
+
+    private fun createRecyclerView() {
+        recyclerView = findViewById(R.id.recycler_view)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.hasPendingAdapterUpdates()
     }
 
     override fun onEventItemClick(event: Event) {
