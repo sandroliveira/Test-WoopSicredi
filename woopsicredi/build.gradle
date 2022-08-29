@@ -29,6 +29,32 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    sourceSets {
+        main {
+            assets.srcDirs += ['src/main/assets']
+        }
+
+        test {
+            resources {
+                srcDir 'src/test/resources'
+            }
+        }
+    }
+
+    testOptions {
+        unitTests {
+            returnDefaultValues = true
+            includeAndroidResources = true
+        }
+    }
+    sourceSets {
+        main {
+            assets {
+                srcDirs 'src/main/assets', 'src/main/resources'
+            }
+        }
+    }
 }
 
 dependencies {
@@ -44,7 +70,15 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.2.1")
     implementation "com.squareup.moshi:moshi-kotlin:1.8.0"
     implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
+    implementation 'androidx.test.ext:junit-ktx:1.1.3'
     testImplementation 'junit:junit:4.13.2'
+    testImplementation 'com.squareup.assertj:assertj-android:1.2.0'
+    testImplementation "com.squareup.okhttp3:mockwebserver:3.12.0"
+    testImplementation "org.mockito.kotlin:mockito-kotlin:3.2.0"
+    testImplementation "com.squareup.retrofit2:adapter-rxjava2:2.5.0"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1"
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+
 }
