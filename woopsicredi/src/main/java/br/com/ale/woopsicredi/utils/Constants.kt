@@ -4,7 +4,7 @@ class Constants {
 
     companion object {
         const val WEB_SERVICE = "https://5f5a8f24d44d640016169133.mockapi.io "
-        const val IMAGE_NOT_FOUND = "https://via.placeholder.com/500x400/FF0000/FFFFFF.jpg?text=imagem%20n%C3%A3o%20encontrada%20/:"
+        const val IMAGE_NOT_FOUND = "https://cdn.neemo.com.br/uploads/settings_webdelivery/logo/3136/image-not-found.jpg"
         const val EVENT = "event"
         const val TYPE_SHARE = "text/plain"
         const val MSG_SUCCESSFUL = "check-in realizado"
